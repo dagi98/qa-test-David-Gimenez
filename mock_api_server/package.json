@@ -1,0 +1,17 @@
+{
+  "name": "qa-test-mock-api-server",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env DOTENV_FLOW_PATH=.. nodemon ./index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv-flow": "^3.1.0",
+    "express": "^4.16.2",
+    "nodemon": "^1.12.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
+  }
+}
