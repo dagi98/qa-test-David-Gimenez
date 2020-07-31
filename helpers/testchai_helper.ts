@@ -69,25 +69,6 @@ class TestChai extends Helper {
     return expect(actual).to.be.an('object',msg);
   }
 
-  expectContainValue(actual, expected) {
-    return expect(actual, expected);
-  }
-
-  expectValue(data, actual, expected) {
-    try {
-      if (data.length === 0) {
-        throw new Error('Data not found');
-      } else {
-        for (let i = 0, len = data.length; i < len; i += 1) {
-          expect(data[i][actual]).to.equal(expected);
-        }
-      }
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
-
   // Not recommended
   expectMost(actual, expected){
     expect(actual).to.be.at.most(expected);
