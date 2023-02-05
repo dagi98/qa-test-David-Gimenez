@@ -1,4 +1,7 @@
+import { id, title, _id } from 'mock_api_server/data/seed';
 import {I, mockApiService} from './common_steps';
+import { expect, grab } from 'chai';
+import { strict } from 'assert';
 
 Given('the system has programs', async () => {
   await mockApiService.postProgram('10');
@@ -49,4 +52,49 @@ Then('the response contains n-1 programs', () => {
   mockApiService.updateProgramsFromResponse();
   I.expectEqualValue(mockApiService.programs.length, oldProgramsLength-1);
 });
+Then('the response is an array of programs', () => {
+  I.expectTrue(Array.isArray(mockApiService.response.data));
+  });
 
+Then('each program has the following properties with values of type:', () => {
+  const programs = mockApiService.response.data;
+  programs.forEach((program) => {
+    I.expectNumber(program.id);
+    
+  });
+});
+
+Then('tasks contains objects where each object has the following properties with values of type', () => {
+  const programs = mockApiService.response.data;
+  programs.forEach((program) => {
+    I.expectNumber(program.id);
+    
+  });
+});
+
+Then('questions contains objects where each object has the following properties with values of type', () => {
+  const programs = mockApiService.response.data;
+  programs.forEach((program) => {
+    I.expectNumber(program.id);
+    
+  });
+});
+Then('measurements contains objects where each object has the following properties with values of type', () => {
+  const programs = mockApiService.response.data;
+  programs.forEach((program) => {
+    I.expectNumber(program.id);
+    
+  });
+});
+ 
+  
+  
+
+    
+    
+    
+  
+    
+    
+    
+    
