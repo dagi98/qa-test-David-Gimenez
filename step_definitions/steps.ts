@@ -53,38 +53,82 @@ Then('the response contains n-1 programs', () => {
   I.expectEqualValue(mockApiService.programs.length, oldProgramsLength-1);
 });
 Then('the response is an array of programs', () => {
-  I.expectTrue(Array.isArray(mockApiService.response.data));
+    I.expectTrue(mockApiService.response.data.length >= 1);
+
   });
 
-Then('each program has the following properties with values of type:', () => {
-  const programs = mockApiService.response.data;
-  programs.forEach((program) => {
-    I.expectNumber(program.id);
-    
-  });
+  Then('each program has the following properties with values of type', (table: GherkinTable) => {
+    var contador
+    for ( contador in table.rows) {
+        if (contador < 0) {
+          continue;
+        }
+        const cells = table.rows[contador].cells;
+        var property = cells[0].value;
+        var type = cells[1].value;
+        for (var program of mockApiService.response.data)
+        {
+          I.expectEqualValue(program[property], type);
+        }
+        
+    }
 });
 
-Then('tasks contains objects where each object has the following properties with values of type', () => {
-  const programs = mockApiService.response.data;
-  programs.forEach((program) => {
-    I.expectNumber(program.id);
-    
-  });
-});
+Then('tasks contains objects where each object has the following properties with values of type', (table: GherkinTable) => {
+  var contador
+  for ( contador in table.rows) {
+      if (contador < 0) {
+        continue;
+      }
+      const cells = table.rows[contador].cells;
+      var property = cells[0].value;
+      var type = cells[1].value;
+      for (var tasks of mockApiService.response.data)
+      {
+          I.expectEqualValue(tasks[property], type);
+      }
+      
 
-Then('questions contains objects where each object has the following properties with values of type', () => {
-  const programs = mockApiService.response.data;
-  programs.forEach((program) => {
-    I.expectNumber(program.id);
+  }
     
   });
-});
-Then('measurements contains objects where each object has the following properties with values of type', () => {
-  const programs = mockApiService.response.data;
-  programs.forEach((program) => {
-    I.expectNumber(program.id);
+
+
+Then('questions contains objects where each object has the following properties with values of type', (table: GherkinTable) => {
+  var contador
+  for ( contador in table.rows) {
+      if (contador < 0) {
+        continue;
+      }
+      const cells = table.rows[contador].cells;
+      var property = cells[0].value;
+      var type = cells[1].value;
+      for (var questions of mockApiService.response.data)
+      {
+          I.expectEqualValue(questions[property], type);
+      }
+      
+
+  }
     
   });
+ 
+Then('measurements contains objects where each object has the following properties with values of type', (table: GherkinTable) => {
+  var contador
+  for ( contador in table.rows) {
+      if (contador < 0) {
+        continue;
+      }
+      const cells = table.rows[contador].cells;
+      var property = cells[0].value;
+      var type = cells[1].value;
+      for (var measurements of mockApiService.response.data)
+      {
+          I.expectEqualValue(measurements[property], type);
+      }
+      
+
+  }
 });
  
   
